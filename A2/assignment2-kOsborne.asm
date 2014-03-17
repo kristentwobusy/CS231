@@ -36,7 +36,7 @@ main:
 		jal printArray
 		add $s4, $a0, $a0
 
-	add $a0, $s0, $0	#array size 
+	add $a0, $s0, $0
 	jal reverseArray
 
 	jal printArray
@@ -178,24 +178,35 @@ printEnd:
 
 reverseArray:
 	add $s0, $a0, $0
-	li $t6, 0
-	li $t7, 80
+	la $t0, array
+	li $s7, 2
+	li $t0, 4
+	li $s6, 0
+	
+	div $s0, $s7	#divide by 2
+	mflo $t5
+
+	mult $s0, $t0	#multiply by 4
+	mfhi $t6
+	mflo $t7
+	add $t0, $t6, $t7	#store into $t0
+	
+	add $s4, $t1, $t0
 
 	reverseContents:
-		bgt $t6, $t7, endReverse
+		beq $s6, $t5, endReverse
+		sub $s4, $s4, 4
 
-		lw $t4, 0($t1)
-		lw $t5, 80($t1)
+		lw $t6, 0($t1)
+		lw $t7, 0($s4)
 
-		sw $t5, 0($t1)
-		sw $t4, 80($t1)
+		sw $t7, 0($t1)
+		sw $t6, 0($s4)
 
-		addi $t6, $t6, 4
-		sub $t7, $t7, 4
+		addi $t1, $t1, 4
+		addi $s6, $s6, 1
 
 		j reverseContents
-
-
 endReverse:
 
 	jr $ra
