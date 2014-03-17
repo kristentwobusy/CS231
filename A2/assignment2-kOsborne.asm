@@ -11,7 +11,6 @@ str3: 	.asciiz"\nPlease enter a number to be inputted into the array: "
 str4:	.asciiz" "
 str5:	.asciiz"\n"
 str6:	.asciiz"\nThe array contains: "
-str7:	.asciiz"\nwe make it here"
 
 .text
 
