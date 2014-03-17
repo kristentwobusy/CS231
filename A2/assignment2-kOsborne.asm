@@ -178,7 +178,7 @@ printEnd:
 
 reverseArray:
 	add $s0, $a0, $0
-	la $t0, array
+	la $t1, array
 	li $s7, 2
 	li $t0, 4
 	li $s6, 0
